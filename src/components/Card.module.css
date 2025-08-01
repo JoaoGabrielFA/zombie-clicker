@@ -4,6 +4,8 @@
 
 .card_button, .card_img {
   width: 100%;
+  padding: 0;
+  margin-bottom: -5px;
 }
 
 .card_lifeBar {
@@ -16,4 +18,16 @@
   height: 100%;
   background-color: #F00;
   transition: .1s;
+}
+
+.locked .card_button{
+  pointer-events: none;
+}
+
+.locked .card_img{ 
+  filter:brightness(0);
+}
+
+.locked .card_life{
+  background-color: black;
 }
