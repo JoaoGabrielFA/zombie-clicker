@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Card.module.css';
 
-function Card({life, zombie, coins, setCoins}) {
+function Card({ life, zombie, coins, setCoins, kills, setKills }) {
 
   const [damage, setDamage] = useState(0);
   const [img, setImg] = useState(`../src/assets/zombie_${zombie}.png`);
@@ -16,11 +16,29 @@ function Card({life, zombie, coins, setCoins}) {
     if (damage > life) {
       setDamage(0);
       setCoins(prev => prev + coins);
+      setKills(prev => prev + 1);
     }
   }, [damage]);
 
-  if(zombie == 1) {
-    status = "unlocked";
+  switch (zombie) {
+    case 1:
+      status = "unlocked";
+      break;
+    case 2:
+      status = kills >= 10 ? "unlocked" : "locked";
+      break;
+    case 3:
+      status = kills >= 50 ? "unlocked" : "locked";
+      break;
+    case 4:
+      status = kills >= 100 ? "unlocked" : "locked";
+      break;
+    case 5:
+      status = kills >= 500 ? "unlocked" : "locked";
+      break;
+    case 6:
+      status = kills >= 1000 ? "unlocked" : "locked";
+      break;
   }
 
   return (
